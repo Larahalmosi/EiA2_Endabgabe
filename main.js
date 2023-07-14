@@ -13,71 +13,61 @@ var Icedealer;
     let background;
     let moveables = [];
     console.log(moveables);
-    // create();
+    create();
     function handleLoad(_event) {
         Icedealer.crc1 = document.getElementById("ice").getContext("2d");
         Icedealer.crc2 = document.getElementById("sim").getContext("2d");
         console.log(Icedealer.crc1);
         console.log(Icedealer.crc2);
-        handleCreate();
-        console.log(handleCreate);
         let createButton = document.getElementById("create");
-        createButton.addEventListener("click", handleCreate);
+        createButton.addEventListener("click", Icedealer.handleCreate);
+        /*  let deleteButton = <HTMLButtonElement> document.getElementById("delete");
+         deleteButton.addEventListener("click", handleDelete);
+         console.log(handleDelete)
+         let editButton = <HTMLButtonElement> document.getElementById("edit");
+         editButton.addEventListener("click", handleDelete);
+         console.log(handleCreate) */
         drawStaticObjects();
         background = Icedealer.crc2.getImageData(0, 0, Icedealer.crc2.canvas.width, Icedealer.crc2.canvas.height);
         Icedealer.crc2.putImageData(background, 0, 0);
         window.requestAnimationFrame(update);
         window.setInterval(update, 20);
     }
-    function handleCreate() {
-        console.log("create");
-        // Get input values
-        let nameInput = document.getElementById("name");
-        let containerSelect = document.getElementById("container");
-        let flavorSelect = document.getElementById("flavor");
-        let numberOfBallsInput = document.getElementById("numberOfBalls");
-        let saucesSelect = document.getElementById("sauces");
-        let toppingsSelect = document.getElementById("toppings");
-        let prizeInput = document.getElementById("prize");
-        // Create new menu element
-        let newMenuElement = document.createElement("div");
-        newMenuElement.id = "menuelement";
-        let nameHeading = document.createElement("h3");
-        nameHeading.textContent = nameInput.value;
-        newMenuElement.appendChild(nameHeading);
-        let priceParagraph = document.createElement("p");
-        priceParagraph.id = "price";
-        priceParagraph.textContent = prizeInput.value + "€";
-        newMenuElement.appendChild(priceParagraph);
-        /*  let detailsParagraph = document.createElement("p");
-        detailsParagraph.innerHTML =
-          containerSelect.value +
-          flavorSelect.value +
-          numberOfBallsInput.value +
-          saucesSelect.value +
-          toppingsSelect.value;
-        newMenuElement.appendChild(detailsParagraph);  */
-        // Append the new menu element to the menu
-        let menu = document.getElementById("menu");
-        menu.appendChild(newMenuElement);
-        // Reset input values
-        /*  nameInput.value = "";
-         containerSelect.selectedIndex = 0;
-         flavorSelect.selectedIndex = 0;
-         numberOfBallsInput.value = "";
-         saucesSelect.selectedIndex = 0;
-         toppingsSelect.selectedIndex = 0;
-         prizeInput.value = ""; */
-        let editbutton = document.createElement("button");
-        editbutton.textContent = 'EDIT',
-            menu.appendChild(editbutton);
-        let deletebutton = document.createElement("button");
-        deletebutton.textContent = 'DELETE',
-            menu.appendChild(deletebutton);
-    }
     function drawStaticObjects() {
         backgroundcanvas();
-        drawTable();
+        let tablePosition = new Icedealer.Vector(150, 500);
+        drawTable(tablePosition);
+        let tablePosition2 = new Icedealer.Vector(450, 500);
+        drawTable(tablePosition2);
+        let tablePosition3 = new Icedealer.Vector(750, 500);
+        drawTable(tablePosition3);
+        //table 1
+        let chair1Position = new Icedealer.Vector(60, 510);
+        drawChair(chair1Position);
+        let chair2Position = new Icedealer.Vector(150, 410);
+        drawChair(chair2Position);
+        let chair3Position = new Icedealer.Vector(230, 410);
+        drawChair(chair3Position);
+        let chair4Position = new Icedealer.Vector(310, 510);
+        drawChair(chair4Position);
+        //table 2
+        let chair5Position = new Icedealer.Vector(370, 510);
+        drawChair(chair5Position);
+        let chair6Position = new Icedealer.Vector(450, 410);
+        drawChair(chair6Position);
+        let chair7Position = new Icedealer.Vector(530, 410);
+        drawChair(chair7Position);
+        let chair8Position = new Icedealer.Vector(600, 510);
+        drawChair(chair8Position);
+        //table 2
+        let chair9Position = new Icedealer.Vector(660, 510);
+        drawChair(chair9Position);
+        let chair10Position = new Icedealer.Vector(750, 410);
+        drawChair(chair10Position);
+        let chair11Position = new Icedealer.Vector(830, 410);
+        drawChair(chair11Position);
+        let chair12Position = new Icedealer.Vector(900, 510);
+        drawChair(chair12Position);
     }
     function backgroundcanvas() {
         let tileWidth = 50;
@@ -100,9 +90,9 @@ var Icedealer;
         // draw tiles
         for (let x = 0; x < Icedealer.crc2.canvas.width; x += tileWidth) {
             for (let y = 250; y < 850; y += tileHeight) {
-                Icedealer.crc2.fillStyle = "hsla(0, 74%, 71%, 1)";
+                Icedealer.crc2.fillStyle = "hsla(0, 54%, 41%, 1)";
                 Icedealer.crc2.fillRect(x, y, tileWidth, tileHeight);
-                Icedealer.crc2.fillStyle = "hsla(0, 0%, 0%, 0.2)";
+                Icedealer.crc2.fillStyle = "hsla(0, 0%, 0%, 0.1)";
                 Icedealer.crc2.fillRect(x + offsetX, y + offsetY, tileWidth, tileHeight);
                 Icedealer.crc2.restore();
             }
@@ -113,8 +103,28 @@ var Icedealer;
         Icedealer.crc1.fillRect(0, 0, Icedealer.crc1.canvas.width, Icedealer.crc1.canvas.height);
         Icedealer.crc1.restore();
     }
-    function drawTable() {
+    function drawTable(_position) {
         Icedealer.crc2.save();
+        Icedealer.crc2.translate(_position.x, _position.y);
+        Icedealer.crc2.fillStyle = "hsl(23, 55%, 50%)";
+        Icedealer.crc2.fillRect(0, 0, 130, 90);
+        Icedealer.crc2.strokeStyle = "hsl(23, 55%, 30%)";
+        Icedealer.crc2.lineWidth = 4;
+        Icedealer.crc2.strokeRect(0, 0, 130, 90);
+        Icedealer.crc2.restore();
+    }
+    function drawChair(_position) {
+        Icedealer.crc2.save();
+        Icedealer.crc2.translate(_position.x, _position.y);
+        Icedealer.crc2.fillStyle = "hsl(23, 55%, 50%)";
+        Icedealer.crc2.fillRect(0, 0, 55, 55);
+        Icedealer.crc2.restore();
+    }
+    function create() {
+        for (let index = 0; index < 5; index++) {
+            let customers = new Icedealer.Customer();
+            moveables.push(customers);
+        }
     }
     function update() {
         Icedealer.crc2.clearRect(0, 0, Icedealer.crc2.canvas.width, Icedealer.crc2.canvas.height);

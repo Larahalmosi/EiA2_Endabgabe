@@ -7,7 +7,7 @@ namespace Icedealer {
       //console.log("Moveable constructor");
 
       if (_position) this.position = _position.copy();
-      else this.position = new Vector(0, 0);
+      else this.position = new Vector(200, 0);
       //min, max lenght festlegen
       this.velosity = new Vector(0, 0);
     }
