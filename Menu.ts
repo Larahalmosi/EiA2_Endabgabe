@@ -87,10 +87,7 @@ export interface menuelement {
     }
   export async function handleDelete() {
     console.log("delete me");
-    let deleteElement: HTMLElement = <HTMLElement>(
-      document.getElementById("delete")
-    );
-    deleteElement.removeChild(newMenuElement);
+   
   }
   export async function handleEdit() {
     console.log("edit me");

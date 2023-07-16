@@ -11,6 +11,7 @@ var Icedealer;
 (function (Icedealer) {
     window.addEventListener("load", handleLoad);
     let background;
+    let containerSelect;
     let moveables = [];
     //console.log(moveables);
     create();
@@ -25,8 +26,10 @@ var Icedealer;
         //editButton.addEventListener("click", handleEdit);
         let deleteButton = document.getElementById("delete");
         //deleteButton.addEventListener("click", handleDelete);
-        console.log(Icedealer.handleDelete);
-        console.log(Icedealer.handleCreate);
+        //console.log(handleDelete)
+        //onsole.log(handleCreate)
+        containerSelect = document.getElementById("container");
+        containerSelect.addEventListener("change", handleContainerSelect);
         drawStaticObjects();
         background = Icedealer.crc2.getImageData(0, 0, Icedealer.crc2.canvas.width, Icedealer.crc2.canvas.height);
         Icedealer.crc2.putImageData(background, 0, 0);
@@ -99,7 +102,7 @@ var Icedealer;
         }
         //background crc1
         Icedealer.crc1.save();
-        Icedealer.crc1.fillStyle = "hsla(55, 94%, 86%, 1)";
+        Icedealer.crc1.fillStyle = "hsl(0, 0%, 78%)";
         Icedealer.crc1.fillRect(0, 0, Icedealer.crc1.canvas.width, Icedealer.crc1.canvas.height);
         Icedealer.crc1.restore();
     }
@@ -119,6 +122,10 @@ var Icedealer;
         Icedealer.crc2.fillStyle = "hsl(23, 55%, 50%)";
         Icedealer.crc2.fillRect(0, 0, 55, 55);
         Icedealer.crc2.restore();
+    }
+    function handleContainerSelect() {
+        let selectedOption = containerSelect.value;
+        Icedealer.drawContainer(selectedOption);
     }
     function create() {
         for (let index = 0; index < 5; index++) {

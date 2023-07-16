@@ -58,8 +58,6 @@ var Icedealer;
     Icedealer.handleCreate = handleCreate;
     async function handleDelete() {
         console.log("delete me");
-        let deleteElement = (document.getElementById("delete"));
-        deleteElement.removeChild(newMenuElement);
     }
     Icedealer.handleDelete = handleDelete;
     async function handleEdit() {

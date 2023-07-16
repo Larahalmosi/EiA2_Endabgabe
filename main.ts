@@ -8,29 +8,37 @@ Quellen: <stackoverflow.com,chat GPT, mozilla.org>
 // Handle-load function
 namespace Icedealer {
   window.addEventListener("load", handleLoad);
+  // Global variables
   export let crc1: CanvasRenderingContext2D;
   export let crc2: CanvasRenderingContext2D;
   let background: ImageData;
+  let containerSelect: HTMLSelectElement;
 
   let moveables: Moveable[] = [];
   //console.log(moveables);
   create();
 
   function handleLoad(_event: Event): void {
-    crc1 = (document.getElementById("ice") as HTMLCanvasElement).getContext("2d")!;
-    crc2 = (document.getElementById("sim") as HTMLCanvasElement).getContext("2d")!;
+    crc1 = (document.getElementById("ice") as HTMLCanvasElement).getContext(
+      "2d"
+    )!;
+    crc2 = (document.getElementById("sim") as HTMLCanvasElement).getContext(
+      "2d"
+    )!;
 
     //console.log(crc1);
     //console.log(crc2);
 
-    let createButton = <HTMLButtonElement> document.getElementById("create");
+    let createButton = <HTMLButtonElement>document.getElementById("create");
     createButton.addEventListener("click", handleCreate);
-    let editButton = <HTMLButtonElement> document.getElementById("edit");
+    let editButton = <HTMLButtonElement>document.getElementById("edit");
     //editButton.addEventListener("click", handleEdit);
-    let deleteButton = <HTMLButtonElement> document.getElementById("delete");
+    let deleteButton = <HTMLButtonElement>document.getElementById("delete");
     //deleteButton.addEventListener("click", handleDelete);
-    console.log(handleDelete)
-    console.log(handleCreate)  
+    //console.log(handleDelete)
+    //onsole.log(handleCreate)
+    containerSelect = document.getElementById("container") as HTMLSelectElement;
+    containerSelect.addEventListener("change", handleContainerSelect);
 
     drawStaticObjects();
     background = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -39,7 +47,6 @@ namespace Icedealer {
     window.requestAnimationFrame(update);
     window.setInterval(update, 20);
   }
-  
 
   function drawStaticObjects(): void {
     backgroundcanvas();
@@ -49,7 +56,7 @@ namespace Icedealer {
     drawTable(tablePosition2);
     let tablePosition3: Vector = new Vector(750, 500);
     drawTable(tablePosition3);
-//table 1
+    //table 1
     let chair1Position: Vector = new Vector(60, 510);
     drawChair(chair1Position);
     let chair2Position: Vector = new Vector(150, 410);
@@ -76,8 +83,6 @@ namespace Icedealer {
     drawChair(chair11Position);
     let chair12Position: Vector = new Vector(900, 510);
     drawChair(chair12Position);
-
-
   }
 
   function backgroundcanvas() {
@@ -114,40 +119,44 @@ namespace Icedealer {
     }
     //background crc1
     crc1.save();
-    crc1.fillStyle = "hsla(55, 94%, 86%, 1)";
+    crc1.fillStyle = "hsl(0, 0%, 78%)";
     crc1.fillRect(0, 0, crc1.canvas.width, crc1.canvas.height);
     crc1.restore();
   }
 
-  function drawTable(_position:Vector): void {
+  function drawTable(_position: Vector): void {
     crc2.save();
     crc2.translate(_position.x, _position.y);
-    crc2.fillStyle ="hsl(23, 55%, 50%)";
-    crc2.fillRect(0,0,130,90);
+    crc2.fillStyle = "hsl(23, 55%, 50%)";
+    crc2.fillRect(0, 0, 130, 90);
     crc2.strokeStyle = "hsl(23, 55%, 30%)";
     crc2.lineWidth = 4;
     crc2.strokeRect(0, 0, 130, 90);
     crc2.restore();
   }
 
-  function drawChair(_position:Vector): void {
+  function drawChair(_position: Vector): void {
     crc2.save();
     crc2.translate(_position.x, _position.y);
-    crc2.fillStyle ="hsl(23, 55%, 50%)"
-    crc2.fillRect(0,0,55,55)
+    crc2.fillStyle = "hsl(23, 55%, 50%)";
+    crc2.fillRect(0, 0, 55, 55);
     crc2.restore();
+  }
+  function handleContainerSelect() {
+    let selectedOption = containerSelect.value;
+    drawContainer(selectedOption);
   }
   function create(): void {
     for (let index: number = 0; index < 5; index++) {
       let customers: Customer = new Customer();
       moveables.push(customers);
       console.log("new customer created");
-    }}
+    }
+  }
 
   export function update(): void {
     crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
-     crc2.putImageData(background, 0, 0); 
-     
+    crc2.putImageData(background, 0, 0);
 
     for (let moveable of moveables) {
       moveable.move(1 / 60);
