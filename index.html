@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="Vector.js"></script>
+    <script src="Ice.js"></script>
     <script src="Moveable.js"></script>
     <script src="Menu.js"></script>
-    <script src="Ice.js"></script>
+    
     <script src="Customer.js"></script>
     <script src="main.js"></script>
     <link rel="stylesheet" href="stylesheet.css"></link>
@@ -21,19 +22,32 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     </canvas>
     <div id="menu">
       <h2>ICEMACHINE</h2>
-      <input  id="name" name="name"></input>
+      <input  id="name" name="name" placeholder="Icecreation name"></input>
       <select id="container">
-        <option>container</option>
+        <option>Waffel</option>
+        <option>Becher</option>
       </select>
       <select id="flavor">
-        <option>type</option>
+        <option>Andromeda</option>
+        <option>Blutwurst</option>
+        <option>Erdnuss</option>
+        <option>Materie</option>
+        <option>Luft</option>
       </select>
       <input id="numberOfBalls" type="number" placeholder="number of Balls">
       <select id="sauces">
-        <option>sauces</option>
+        <option value="Starburst">Starburst</option>
+        <option value="Schoki">Schoki</option>
+        <option value="Erdnusssoße">Erdnusssoße</option>
+        <option value="Milchstraße">Milchstraße</option>
+        <option value="Luft">Luft</option>
       </select>
       <select id="toppings">
-        <option>toppings</option>
+        <option value="Weltraummüll">Weltraummüll</option>
+        <option value="Bernstein">Bernstein</option>
+        <option value="Paranuss">Paranuss</option>
+        <option value="Sonne">Sonne</option>
+        <option value="Luft">Luft</option>
       </select>
       <input id="prize" type="number" placeholder="prize">
       <button id="create">create</button>

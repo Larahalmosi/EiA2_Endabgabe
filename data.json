@@ -1,0 +1,54 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Intergalaktisch",
+            "container": "Waffel",
+            "flavor": "Andromeda",
+            "numberOfBalls":"2",
+            "sauces": "Starburst",
+            "toppings": "Weltraummüll",
+            "price": "6,66"
+        },
+        {
+            "id": 2,
+            "name": "Frankfurt",
+            "container": "Waffel",
+            "type": "Blutwurst",
+            "amount":"2",
+            "sauces": "Schoki",
+            "toppings": "Bernstein",
+            "price": "15,23"
+        },
+        {
+            "id": 3,
+            "name": "Nusseis",
+            "container": "Waffel",
+            "type": "Erdnuss",
+            "amount":"1",
+            "sauces": "Erdnusssoße",
+            "toppings": "Paranuss",
+            "price": "35,35"
+        },
+        {
+            "id": 4,
+            "name": "Schwarzes Loch",
+            "container": "Becher",
+            "type": "Materie",
+            "amount":"3",
+            "sauces": "Milchstraße",
+            "toppings": "Sonne",
+            "price": "12,99"
+        },
+        {
+            "id": 5,
+            "name": "Luft und Liebe",
+            "container": "Becher",
+            "type": "Luft",
+            "amount":"1",
+            "sauces": "Luft",
+            "toppings": "Luft",
+            "price": "3,99"}
+       
+    ]
+}

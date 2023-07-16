@@ -12,21 +12,21 @@ var Icedealer;
     window.addEventListener("load", handleLoad);
     let background;
     let moveables = [];
-    console.log(moveables);
+    //console.log(moveables);
     create();
     function handleLoad(_event) {
         Icedealer.crc1 = document.getElementById("ice").getContext("2d");
         Icedealer.crc2 = document.getElementById("sim").getContext("2d");
-        console.log(Icedealer.crc1);
-        console.log(Icedealer.crc2);
+        //console.log(crc1);
+        //console.log(crc2);
         let createButton = document.getElementById("create");
         createButton.addEventListener("click", Icedealer.handleCreate);
-        /*  let deleteButton = <HTMLButtonElement> document.getElementById("delete");
-         deleteButton.addEventListener("click", handleDelete);
-         console.log(handleDelete)
-         let editButton = <HTMLButtonElement> document.getElementById("edit");
-         editButton.addEventListener("click", handleDelete);
-         console.log(handleCreate) */
+        let editButton = document.getElementById("edit");
+        //editButton.addEventListener("click", handleEdit);
+        let deleteButton = document.getElementById("delete");
+        //deleteButton.addEventListener("click", handleDelete);
+        console.log(Icedealer.handleDelete);
+        console.log(Icedealer.handleCreate);
         drawStaticObjects();
         background = Icedealer.crc2.getImageData(0, 0, Icedealer.crc2.canvas.width, Icedealer.crc2.canvas.height);
         Icedealer.crc2.putImageData(background, 0, 0);
@@ -124,6 +124,7 @@ var Icedealer;
         for (let index = 0; index < 5; index++) {
             let customers = new Icedealer.Customer();
             moveables.push(customers);
+            console.log("new customer created");
         }
     }
     function update() {

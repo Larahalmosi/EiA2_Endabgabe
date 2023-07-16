@@ -9,7 +9,7 @@ var Icedealer;
             if (_position)
                 this.position = _position.copy();
             else
-                this.position = new Icedealer.Vector(200, 0);
+                this.position = new Icedealer.Vector(0, 0);
             //min, max lenght festlegen
             this.velosity = new Icedealer.Vector(0, 0);
         }

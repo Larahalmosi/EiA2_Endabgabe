@@ -13,24 +13,24 @@ namespace Icedealer {
   let background: ImageData;
 
   let moveables: Moveable[] = [];
-  console.log(moveables);
+  //console.log(moveables);
   create();
 
   function handleLoad(_event: Event): void {
     crc1 = (document.getElementById("ice") as HTMLCanvasElement).getContext("2d")!;
     crc2 = (document.getElementById("sim") as HTMLCanvasElement).getContext("2d")!;
 
-    console.log(crc1);
-    console.log(crc2);
+    //console.log(crc1);
+    //console.log(crc2);
 
     let createButton = <HTMLButtonElement> document.getElementById("create");
     createButton.addEventListener("click", handleCreate);
-   /*  let deleteButton = <HTMLButtonElement> document.getElementById("delete");
-    deleteButton.addEventListener("click", handleDelete);
-    console.log(handleDelete)
     let editButton = <HTMLButtonElement> document.getElementById("edit");
-    editButton.addEventListener("click", handleDelete);
-    console.log(handleCreate) */
+    //editButton.addEventListener("click", handleEdit);
+    let deleteButton = <HTMLButtonElement> document.getElementById("delete");
+    //deleteButton.addEventListener("click", handleDelete);
+    console.log(handleDelete)
+    console.log(handleCreate)  
 
     drawStaticObjects();
     background = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -141,6 +141,7 @@ namespace Icedealer {
     for (let index: number = 0; index < 5; index++) {
       let customers: Customer = new Customer();
       moveables.push(customers);
+      console.log("new customer created");
     }}
 
   export function update(): void {

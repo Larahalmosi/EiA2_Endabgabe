@@ -1,7 +1,7 @@
 "use strict";
 var Icedealer;
 (function (Icedealer) {
-    async function handleCreate() {
+    async function handleCreate(data) {
         console.log("create");
         // Get input values
         let nameInput = document.getElementById("name");
@@ -23,10 +23,14 @@ var Icedealer;
         newMenuElement.appendChild(priceParagraph);
         let detailsParagraph = document.createElement("p");
         detailsParagraph.innerHTML =
-            containerSelect.value + 'br' +
+            containerSelect.value +
+                "<br>" +
                 flavorSelect.value +
+                "<br>" +
                 numberOfBallsInput.value +
+                "<br>" +
                 saucesSelect.value +
+                "<br>" +
                 toppingsSelect.value;
         newMenuElement.appendChild(detailsParagraph);
         // Append the new menu element to the menu
@@ -40,21 +44,25 @@ var Icedealer;
         saucesSelect.selectedIndex = 0;
         toppingsSelect.selectedIndex = 0;
         prizeInput.value = "";
-        let editbutton = document.createElement("button");
-        editbutton.id = 'edit';
-        editbutton.textContent = 'EDIT';
+        let editbutton = (document.createElement("button"));
+        editbutton.id = "edit";
+        editbutton.textContent = "EDIT";
+        editbutton.addEventListener("click", handleEdit);
         menu.appendChild(editbutton);
-        let deletebutton = document.createElement("button");
-        editbutton.id = 'delete';
-        deletebutton.textContent = 'DELETE';
+        let deletebutton = (document.createElement("button"));
+        deletebutton.id = "delete";
+        deletebutton.textContent = "DELETE";
+        deletebutton.addEventListener("click", handleDelete);
         menu.appendChild(deletebutton);
     }
     Icedealer.handleCreate = handleCreate;
-    function handleDelete() {
+    async function handleDelete() {
         console.log("delete me");
+        let deleteElement = (document.getElementById("delete"));
+        deleteElement.removeChild(newMenuElement);
     }
     Icedealer.handleDelete = handleDelete;
-    function handleEdit() {
+    async function handleEdit() {
         console.log("edit me");
     }
     Icedealer.handleEdit = handleEdit;

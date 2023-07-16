@@ -1,5 +1,6 @@
 namespace Icedealer {
   export class IceCreamCreation {
+    //data: Eis[] = [];
     // Eigenschaften der Eisbecher-Kreationen
     names: string[];
     container: string[];
@@ -10,6 +11,7 @@ namespace Icedealer {
     prizes: number;
 
     constructor(
+   // super();
       names: string[],
       container: string[],
       flavors: string[],
@@ -26,6 +28,12 @@ namespace Icedealer {
       this.sauces = sauces;
       this.toppings = toppings;
       this.prizes = prizes;
+    }
+     draw():void{
+        console.log("draw waffle");
+        crc1.fillStyle = 'lightbrown';
+    crc1.fillRect(50, 50, 200, 100);
+
     }
   }
 }
