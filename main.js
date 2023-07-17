@@ -12,9 +12,12 @@ var Icedealer;
     window.addEventListener("load", handleLoad);
     let background;
     let containerSelect;
+    let numberOfBallsInput;
+    Icedealer.numberOfBalls = 0;
     let moveables = [];
     //console.log(moveables);
     create();
+    asynch;
     function handleLoad(_event) {
         Icedealer.crc1 = document.getElementById("ice").getContext("2d");
         Icedealer.crc2 = document.getElementById("sim").getContext("2d");
@@ -30,6 +33,15 @@ var Icedealer;
         //onsole.log(handleCreate)
         containerSelect = document.getElementById("container");
         containerSelect.addEventListener("change", handleContainerSelect);
+        numberOfBallsInput = document.getElementById("numberOfBalls");
+        Icedealer.numberOfBalls = parseInt(numberOfBallsInput.value, 10);
+        // Add event listener to update numberOfBalls when the input value changes
+        numberOfBallsInput.addEventListener("input", handleNumberOfBallsInput);
+        ;
+        /*let response: Response = await fetch("https://webuser.hs-furtwangen.de/~halmosil/database/?command=create&collection=Menulist");
+        let menu: string = await response.text();
+        let data: menuelement = JSON.parse(menu);*/
+        //handleContainerSelect(data);
         drawStaticObjects();
         background = Icedealer.crc2.getImageData(0, 0, Icedealer.crc2.canvas.width, Icedealer.crc2.canvas.height);
         Icedealer.crc2.putImageData(background, 0, 0);
@@ -123,9 +135,14 @@ var Icedealer;
         Icedealer.crc2.fillRect(0, 0, 55, 55);
         Icedealer.crc2.restore();
     }
+    function handleNumberOfBallsInput() {
+        Icedealer.numberOfBalls = parseInt(numberOfBallsInput.value, 10);
+        Icedealer.drawBall(containerSelect.value);
+    }
     function handleContainerSelect() {
         let selectedOption = containerSelect.value;
         Icedealer.drawContainer(selectedOption);
+        Icedealer.drawBall(selectedOption);
     }
     function create() {
         for (let index = 0; index < 5; index++) {

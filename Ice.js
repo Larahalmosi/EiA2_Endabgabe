@@ -56,5 +56,55 @@ var Icedealer;
         }
     }
     Icedealer.drawContainer = drawContainer;
+    function drawBall(selectedOption) {
+        console.log("draw balls");
+        let numberOfBalls = Icedealer.numberOfBalls;
+        // Custom flavor
+        let flavorSelect = document.getElementById("flavor");
+        let selectedFlavor = flavorSelect.value;
+        let color = getFlavorColor(selectedFlavor);
+        if (numberOfBalls >= 1) {
+            // Ice cream ball 1
+            Icedealer.crc1.fillStyle = color;
+            Icedealer.crc1.beginPath();
+            Icedealer.crc1.arc(75, 100, 24, 0, 2 * Math.PI);
+            Icedealer.crc1.fill();
+            Icedealer.crc1.closePath();
+        }
+        if (numberOfBalls >= 2) {
+            // Ice cream ball 2
+            Icedealer.crc1.fillStyle = color;
+            Icedealer.crc1.beginPath();
+            Icedealer.crc1.arc(124, 100, 24, 0, 2 * Math.PI);
+            Icedealer.crc1.fill();
+            console.log("zwei");
+            Icedealer.crc1.closePath();
+        }
+        if (numberOfBalls >= 3) {
+            // Ice cream ball 3
+            Icedealer.crc1.fillStyle = color;
+            Icedealer.crc1.beginPath();
+            Icedealer.crc1.arc(100, 70, 24, 0, 2 * Math.PI);
+            Icedealer.crc1.fill();
+            Icedealer.crc1.closePath();
+        }
+    }
+    Icedealer.drawBall = drawBall;
+    function getFlavorColor(flavor) {
+        switch (flavor) {
+            case "Andromeda":
+                return "hsl(200, 100%, 50%)";
+            case "Blutwurst":
+                return "hsl(0, 80%, 40%)";
+            case "Erdnuss":
+                return "hsl(30, 70%, 50%)";
+            case "Materie":
+                return "hsl(240, 60%, 50%)";
+            case "Luft":
+                return "hsl(200, 20%, 80%)";
+            default:
+                return "hsl(0, 0%, 0%)";
+        }
+    }
 })(Icedealer || (Icedealer = {}));
 //# sourceMappingURL=Ice.js.map

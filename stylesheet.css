@@ -2,7 +2,7 @@ body{
    background-color: aquamarine;
 
 }
-img{
+#sid img{
     opacity: 50%;
     position: fixed;
     bottom: 0;
@@ -71,7 +71,8 @@ h3{
 }
 p{
   line-height: 120%;
-}
+  width:500px;
+float: right;}
 #sim{
     padding-left: 0;
     padding-right: 0;
@@ -86,4 +87,11 @@ p{
     margin-left: 25%;
     margin-top: 6%;
 
+}
+#ice img{
+    width: 100px;
+    height: 100px;
+    opacity: 100%;
+    position:relative;
+    float: left;
 }

@@ -2,7 +2,7 @@
 var Icedealer;
 (function (Icedealer) {
     async function handleCreate(data) {
-        console.log("create");
+        //console.log("create");
         // Get input values
         let nameInput = document.getElementById("name");
         let containerSelect = document.getElementById("container");
@@ -32,10 +32,18 @@ var Icedealer;
                 saucesSelect.value +
                 "<br>" +
                 toppingsSelect.value;
+        console.log(handleCreate);
         newMenuElement.appendChild(detailsParagraph);
         // Append the new menu element to the menu
         let menu = document.getElementById("menu");
         menu.appendChild(newMenuElement);
+        let query = JSON.stringify(detailsParagraph);
+        await fetch("https://webuser.hs-furtwangen.de/~hauserth/Database/?command=insert&collection=Menulist&data={}" + query);
+        // Create image element
+        let imageElement = document.createElement("img");
+        imageElement.src = getCanvasDataUrl();
+        newMenuElement.appendChild(imageElement);
+        console.log(imageElement);
         // Reset input values
         nameInput.value = "";
         containerSelect.selectedIndex = 0;
@@ -56,6 +64,10 @@ var Icedealer;
         menu.appendChild(deletebutton);
     }
     Icedealer.handleCreate = handleCreate;
+    function getCanvasDataUrl() {
+        let canvas = document.getElementById("ice");
+        return canvas.toDataURL();
+    }
     async function handleDelete() {
         console.log("delete me");
     }

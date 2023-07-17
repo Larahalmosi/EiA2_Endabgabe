@@ -13,8 +13,8 @@ export interface menuelement {
 }
   
   
-    export async function handleCreate(data: Ice[]) {
-      console.log("create");
+    export async function handleCreate(data: Ice[]): Promise<void> {
+      //console.log("create");
       // Get input values
       let nameInput = document.getElementById("name") as HTMLInputElement;
       let containerSelect = document.getElementById(
@@ -54,11 +54,22 @@ export interface menuelement {
   "<br>" +
   toppingsSelect.value;
 
+  console.log(handleCreate);
+
       newMenuElement.appendChild(detailsParagraph);
       // Append the new menu element to the menu
       let menu = <HTMLDivElement>document.getElementById("menu");
       menu.appendChild(newMenuElement);
-  
+      
+      let query = JSON.stringify(detailsParagraph); 
+        
+      await fetch("https://webuser.hs-furtwangen.de/~hauserth/Database/?command=insert&collection=Menulist&data={}" + query);
+
+       // Create image element
+       let imageElement = document.createElement("img");
+       imageElement.src = getCanvasDataUrl();
+       newMenuElement.appendChild(imageElement);
+       console.log(imageElement);
       // Reset input values
       nameInput.value = "";
       containerSelect.selectedIndex = 0;
@@ -84,6 +95,11 @@ export interface menuelement {
       deletebutton.textContent = "DELETE";
       deletebutton.addEventListener("click", handleDelete);
       menu.appendChild(deletebutton);
+  
+    }
+    function getCanvasDataUrl(): string {
+      let canvas = document.getElementById("ice") as HTMLCanvasElement;
+      return canvas.toDataURL();
     }
   export async function handleDelete() {
     console.log("delete me");

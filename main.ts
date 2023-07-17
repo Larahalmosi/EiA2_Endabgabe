@@ -13,12 +13,15 @@ namespace Icedealer {
   export let crc2: CanvasRenderingContext2D;
   let background: ImageData;
   let containerSelect: HTMLSelectElement;
+  let numberOfBallsInput:HTMLInputElement;
+  export let numberOfBalls: number = 0;
+  
 
   let moveables: Moveable[] = [];
   //console.log(moveables);
   create();
 
-  function handleLoad(_event: Event): void {
+  asynch function handleLoad(_event: Event): void {
     crc1 = (document.getElementById("ice") as HTMLCanvasElement).getContext(
       "2d"
     )!;
@@ -39,6 +42,18 @@ namespace Icedealer {
     //onsole.log(handleCreate)
     containerSelect = document.getElementById("container") as HTMLSelectElement;
     containerSelect.addEventListener("change", handleContainerSelect);
+    
+    numberOfBallsInput = document.getElementById("numberOfBalls") as HTMLInputElement;
+    numberOfBalls = parseInt(numberOfBallsInput.value, 10);
+  
+    // Add event listener to update numberOfBalls when the input value changes
+    numberOfBallsInput.addEventListener("input", handleNumberOfBallsInput);
+    ;
+    /*let response: Response = await fetch("https://webuser.hs-furtwangen.de/~halmosil/database/?command=create&collection=Menulist");
+    let menu: string = await response.text();
+    let data: menuelement = JSON.parse(menu);*/
+    
+    //handleContainerSelect(data);
 
     drawStaticObjects();
     background = crc2.getImageData(0, 0, crc2.canvas.width, crc2.canvas.height);
@@ -142,9 +157,15 @@ namespace Icedealer {
     crc2.fillRect(0, 0, 55, 55);
     crc2.restore();
   }
+  function handleNumberOfBallsInput(): void {
+    numberOfBalls = parseInt(numberOfBallsInput.value, 10);
+    drawBall(containerSelect.value);
+  }
+  
   function handleContainerSelect() {
     let selectedOption = containerSelect.value;
     drawContainer(selectedOption);
+    drawBall(selectedOption);
   }
   function create(): void {
     for (let index: number = 0; index < 5; index++) {
